@@ -1,0 +1,51 @@
+## Generic
+LOCATION="uksouth"   # az account list-locations
+TENANT_ID=""
+CLIENT_ID=""
+CLIENT_SECRET=""
+AAD_CLIENT_APP_ID=""
+AAD_SERVER_APP_ID=""
+AAD_SERVER_APP_SECRET=""
+SUBSCRIPTION_ID=""
+
+# Prerequisite
+RESOURCE_GROUP="alpha-aks-demo"
+
+## AKS Cluster
+AKS_NAME="alpha-aks-demo-azcli"
+KUBERNETES_VERSION="1.14.8" # az aks get-versions -l uksouth
+
+## AKS Networking
+DNS_SERVICE_IP="10.0.0.10"
+SERVICE_CIDR="10.0.0.0/16"
+DOCKER_BRIDGE_CIDR="172.17.0.1/16"
+NETWORK_PLUGIN="azure" # defaults to kubenet
+NETWORK_POLICY="azure" # values can be azure, calico or "" for disabled policy
+
+## AKS Nodepools
+NODE_COUNT=3
+MIN_NODE_COUNT=1
+MAX_NODE_COUNT=3
+VM_SIZE="Standard_DS2_v2"
+NODE_POOL_NAME="aksnodepool"  # Cannot contain more than 12 charactors and shoule only contain alpha-numerics
+VM_SET_TYPE="VirtualMachineScaleSets"  # Other type is AvailabilitySet
+ZONES="1 2 3"
+VNET_NAME="alpha-aks-demo-vnet"
+SUBNET_NAME="alpha-aks-demo-subnet-private"
+
+## AKS addons
+ENABLE_ADDONS="monitoring"  # Comma seperated list of addons like http_application_routing, monitoring, virtual-node
+LA_WORKSPACE_NAME="alpha-aks-demo-log-analytics" # Required if monitoring add on is enabled
+
+## Tags
+TAGS="name=${AKS_NAME} team=team-alpha"
+
+##_________ For VNET and SUBNET ------
+VNET_NAME=${RESOURCE_GROUP}-vnet
+SUBNET_NAME=${RESOURCE_GROUP}-subnet-private
+VNET_CIDR="10.1.0.0/18"
+SUBNET_PREFIXES="10.1.0.0/24"
+
+
+
+
